@@ -24,13 +24,13 @@ function outer() {
   
 // Code Here
 
-
+const inner = outer();
 
 //Once you do that, invoke inner.
 
 //Code Here
 
-
+inner();
 
 ////////// PROBLEM 2 //////////
 
@@ -53,7 +53,9 @@ function callFriend(name) {
 
 //Code Here
 
+const callJake = callFriend('Jake');
 
+callJake(435-555-9248);
 
 ////////// PROBLEM 3 //////////
 
@@ -63,14 +65,20 @@ function callFriend(name) {
 
 //Code Here
 
-
+function makeCounter(){
+  let num = 0
+  function addOne(){
+    return num += 1;
+  }
+  return addOne;
+}
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -87,9 +95,17 @@ function callFriend(name) {
 
 function counterFactory(value) {
   // Code here.
+  let result = value;
 
   return {
-
+    inc: function(){
+      result = result + 1;
+      return result;
+    },
+    dec: function(){
+      result = result - 1;
+      return result;
+    }
   };
 }
 
@@ -114,8 +130,12 @@ function motivation( firstname, lastname ) {
 
   // code message function here.
 
+  const message = () => {
+    return `${welcomeText} ${firstname} ${lastname}.`
+  }
+
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
@@ -144,10 +164,15 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+
+    publicMethod: function(){
+     return privateMethod();
+    }
+
   };
 })();
 
-
+module.publicMethod();
 
 ////////// PROBLEM 7 //////////
 
@@ -163,6 +188,16 @@ function secretNumber() {
 
   return {
     // Code here
+
+    addToSecret: function(num){
+      secret = secret + num;
+      return secret;
+    },
+    takeAwayFromSecret: function(num){
+      secret = secret - num;
+      return secret;
+    }
+
   };
 }
 
@@ -188,9 +223,14 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
+    let time = i
+    function timer(){
     setTimeout(function() {
-      console.log(i);
+      console.log(time);
     }, i * 1000);
+
+    }
+    timer()
   }
 }
 timeOutCounter();
