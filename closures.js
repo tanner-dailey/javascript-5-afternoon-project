@@ -190,11 +190,11 @@ function secretNumber() {
     // Code here
 
     addToSecret: function(num){
-      secret = secret + num;
+      secret += num;
       return secret;
     },
     takeAwayFromSecret: function(num){
-      secret = secret - num;
+      secret -= num;
       return secret;
     }
 
